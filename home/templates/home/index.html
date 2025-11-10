@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>{{ page_title }}</h1>
+        <p>{{ welcome_message }}</p>
+        <p><small>{{ today|date:"l, F j, Y" }}</small></p>
+    </header>
+
+    <section>
+        <h2>Featured Products</h2>
+        <ul>
+            {% for product in featured_products %}
+                <li>
+                    <strong>{{ product.name }}</strong> — 
+                    ${{ product.price }}
+                    {% if product.available %}
+                        <span style="color: green;">(Available)</span>
+                    {% else %}
+                        <span style="color: red;">(Out of Stock)</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Latest Announcements</h2>
+        <ul>
+            {% for note in announcements %}
+                <li><b>{{ note.title }}</b>: {{ note.detail }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+</body>
+</html>

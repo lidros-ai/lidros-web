@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBeer - Admin Dashboard</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'dashboard/style.css' %}">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>eBeer Admin</h2>
+
+        <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+        <a href="{% url 'manage_customers' %}">Customers</a>
+        <a href="{% url 'manage_agents' %}">Agents</a>
+        <a href="{% url 'manage_orders' %}">Orders</a>
+        <a href="{% url 'announcements' %}">Announcements</a>
+        <a href="{% url 'predictions' %}">Predictions</a>
+        <a href="{% url 'settings' %}">Settings</a>
+
+        <a href="{% url 'logout' %}" style="color:#e94560; font-weight:600;">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <div class="header">
+            <h1>Welcome, {{ admin_name }}</h1>
+            <button class="logout-btn" onclick="window.location.href='{% url 'logout' %}'">Logout</button>
+        </div>
+
+        <!-- Dynamic Cards -->
+        <div class="cards">
+            <div class="card">
+                <h3>{{ total_customers }}</h3>
+                <p>Total Customers</p>
+            </div>
+
+            <div class="card">
+                <h3>{{ total_agents }}</h3>
+                <p>Total Agents</p>
+            </div>
+
+            <div class="card">
+                <h3>{{ total_orders }}</h3>
+                <p>Orders Processed</p>
+            </div>
+
+            <div class="card">
+                <h3>{{ total_announcements }}</h3>
+                <p>Announcements</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
